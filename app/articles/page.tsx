@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation'
-import Image from 'next/image';
 import { Article } from '@/types/types';
 
 const formatDate = (dateString: string) => {
@@ -23,8 +22,7 @@ export default function ArticlesPage() {
       const data = await res.json();
       setArticles(data);
 
-      // Get unique tags from all articles, including "All"
-      const allTags = ['All', ...new Set(data.flatMap((article) => article.tags))];
+      const allTags = ['All', ...new Set<string>(data.flatMap((article: Article) => article.tags as string[]))];
       setTags(allTags);
 
       // Initially show all articles

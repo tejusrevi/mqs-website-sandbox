@@ -1,13 +1,14 @@
 'use client'
 
 import { useEffect, useState } from 'react';
+import {Article} from '@/types/types'
 
 export default function ArticlePage({
   params,
 }: {
   params: Promise<{ slug: string }>
 }) {
-  const [article, setArticle] = useState<any>(null);
+  const [article, setArticle] = useState<Article>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -37,7 +38,7 @@ export default function ArticlePage({
         const data = await res.json();
         setArticle(data);
       } catch (error) {
-        setError(error.message);
+        console.log(error);
       } finally {
         setLoading(false);
       }
@@ -56,12 +57,16 @@ export default function ArticlePage({
 
   return (
     <div className="container mx-auto p-4 bg-black text-white">
-      <h1 className="text-3xl font-bold mb-4">{article.title}</h1>
-      <p className="text-sm text-gray-400 mb-4">By {article.author} - {article.date}</p>
-      <div
-        className="article-content text-gray-300"
-        dangerouslySetInnerHTML={{ __html: article.content }}
-      />
+      {article && (
+        <div>
+          <h1 className="text-3xl font-bold mb-4">{article.title}</h1>
+          <p className="text-sm text-gray-400 mb-4">By {article.author} - {article.date}</p>
+          <div
+            className="article-content text-gray-300"
+            dangerouslySetInnerHTML={{ __html: article.content }}
+          />
+        </div>
+      )}
     </div>
   );
 }

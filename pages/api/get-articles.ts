@@ -2,8 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import { NextApiRequest, NextApiResponse } from 'next';
 import matter from 'gray-matter';
-import { remark } from 'remark';
-import html from 'remark-html';
+// import { remark } from 'remark';
+// import html from 'remark-html';
 
 import { Article } from '@/types/types';
 const articlesDirectory = path.join(process.cwd(), 'public', 'article-list');

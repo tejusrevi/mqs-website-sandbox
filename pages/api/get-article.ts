@@ -35,6 +35,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
     res.status(200).json(article);
   } catch (error) {
-    res.status(404).json({ error: 'Article not found' });
+    res.status(404).json({ error: 'Article not found ' + error});
   }
 }
