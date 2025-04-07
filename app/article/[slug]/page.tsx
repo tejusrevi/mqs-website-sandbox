@@ -56,7 +56,7 @@ export default function ArticlePage({
   }
 
   return (
-    <div className="container mx-auto p-4 bg-black text-white">
+    <div className="container mx-auto p-4 bg-black text-white md:px-30">
       {article && (
         <div>
           <h1 className="text-3xl font-bold mb-4">{article.title}</h1>
